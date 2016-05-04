@@ -1,11 +1,6 @@
 import express from 'express'
-import { Config } from './config'
+import { AppConfig } from '../conf/appconfig'
 
-const app = Config.app()
-const db = Config.db()
+const app = AppConfig()
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(app.get('port'), () => console.log('Green something Up and Running on port ' + app.get('port')))
