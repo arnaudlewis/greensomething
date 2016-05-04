@@ -1,4 +1,5 @@
 import { getCollection } from '../db'
+import { User } from '../../models/User'
 
 const collection = getCollection('users')
 
