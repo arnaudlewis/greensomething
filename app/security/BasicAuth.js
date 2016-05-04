@@ -1,5 +1,3 @@
-import { Strategy } from 'passport-local'
-
 import UserRepo from '../data/repositories/UserRepo'
 
 export default {

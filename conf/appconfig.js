@@ -12,7 +12,6 @@ import session from 'express-session'
 import errorHandler from 'errorhandler'
 import path from 'path'
 import assert from 'assert'
-import passport from 'passport'
 import routes from './routes'
 
 export let AppConfig = () => {
@@ -28,8 +27,6 @@ export let AppConfig = () => {
   app.use(cookieParser('1234'));
   app.use(session({secret: '1234', saveUninitialized: true, resave: true}));
   app.use(express.static(path.join(__dirname, 'public')));
-  app.use(passport.initialize());
-  app.use(passport.session());
   app.use(errorHandler());
 
   app.use('/', routes);

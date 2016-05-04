@@ -6,6 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "babel-watch app/app.js -w ./app/",
+    "start-windows": "nodemon app/app.js -d app/ --exec babel-node",
     "build-sass": "node-sass --include-path scss assets/stylesheets/main.sass public/stylesheets/main.css",
     "watch-sass": "nodemon -e sass -x \"npm run build-sass\""
   },
@@ -22,8 +23,6 @@
     "mongodb": "^2.1.18",
     "mongojs": "^2.4.0",
     "morgan": "^1.7.0",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "ramda": "^0.21.0",
     "serve-favicon": "^2.3.0"
