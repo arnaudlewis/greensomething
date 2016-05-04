@@ -4,12 +4,12 @@ const collection = getCollection('users')
 
 export default {
 
-  byCredentials (identifier, password) {
+  byCredentials (identifier) {
     new Promise((resolve, reject) => {
-      const query = { $or: [ { "username": identifier }, { "email": identifier } ] }
+      const query = { "email": identifier }
       collection.findOne(query, (err, user) => {
         if(err) reject(err)
-        else resolve(user)
+        else resolve( new User(user._id, user.email, user.password))
       })
     })
   }
