@@ -4,7 +4,8 @@ import { Router } from '../app/Router'
 import BasicAuth from '../app/security/BasicAuth'
 import Website from '../app/controllers/Website'
 
-router.post(Router.index, BasicAuth.login)
+router.get(Router.index, Website.index)
 router.get(Router.authenticate, Website.login)
+
 
 export default router

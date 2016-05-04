@@ -14,11 +14,12 @@ import path from 'path'
 import assert from 'assert'
 import routes from './routes'
 
+
 export let AppConfig = () => {
   let app = express();
 
   app.set('port', process.env.PORT || 3000);
-  app.set('views', path.join(__dirname, 'views'));
+  app.set('views', path.join(__dirname, '../app/views'));
   app.set('view engine', 'jade');
   app.use(favicon("public/images/favicon.png"));
   app.use(logger('dev'));

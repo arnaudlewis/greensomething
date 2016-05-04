@@ -14,5 +14,12 @@ export default {
       res.redirect(Router.authenticate, {error : "Unavailable email"})
     })
     res.redirect(Router.index)
+  },
+
+  index(req,res){
+    res.render('index')
+
   }
+
+
 }
