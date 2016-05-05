@@ -1,5 +1,5 @@
 'use strict';
-import Bcrypt from 'bcrypt'
+/*import Bcrypt from 'bcrypt'*/
 
 export let User = class {
 

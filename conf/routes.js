@@ -14,6 +14,9 @@ router.get(Router.index, Website.index)
 router.get(Router.authenticate, Website.authenticate)
 router.post(Router.signin, Website.signin)
 router.post(Router.signup, Website.signup)
+router.get(Router.tripview, Website.tripview)
+router.post(Router.travel, Website.trip)
+
 
 
 export default router

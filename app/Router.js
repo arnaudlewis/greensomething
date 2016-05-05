@@ -5,6 +5,11 @@ export let Router = {
   authenticate: '/authenticate',
   signin: '/signin',
   signup: '/signup',
+  'contact': '/contact',
+  'travel':'/travel',
+  'listTrip':'/trip',
+  'tripview':'/tripview',
+
   withQueryString(route, params) {
     let queryString = '';
     if ( params ) {
@@ -13,4 +18,5 @@ export let Router = {
     }
     return route + queryString;
   }
+
 }
