@@ -14,8 +14,9 @@ export let Router = {
   //helpers
   'contact': '/contact',
   'travel':'/travel',
-  'listTrip':'/trip',
+  'triplist':'/triplist',
   'tripview':'/tripview',
+
 
   withQueryString(route, params) {
     let queryString = '';

@@ -1,5 +1,6 @@
 'use strict';
 
+
 export let Trip = class {
 
   constructor (id, departure, arrival, date, nPlace, driver, price) {

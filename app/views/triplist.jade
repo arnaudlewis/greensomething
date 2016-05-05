@@ -1,0 +1,21 @@
+extends ./layout
+block body
+    h1  Trip List
+      table
+        tr
+          th Departure
+          th Arrival
+          th Date
+          th Place
+          th Driver
+          th Price
+        each trip in results
+          tr
+            td= trip.departure
+            td= trip.arrival
+            td= trip.date
+            td= trip.nPlace
+            td= trip.driver
+            td= trip.price
+
+
