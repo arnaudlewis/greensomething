@@ -82,9 +82,8 @@ export default {
   },
 
   logout(req, res) {
-    const referer = req.headers.referer
     req.app.locals.ctx = null
     res.clearCookie('X-token')
-    res.redirect(referer)
+    res.redirect(Router.index)
   }
 }

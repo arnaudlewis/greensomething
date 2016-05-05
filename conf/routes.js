@@ -3,7 +3,8 @@ const router = express.Router()
 import R from 'ramda'
 import { Router } from '../app/Router'
 import Authentication from '../app/security/Authentication'
-import Website from '../app/controllers/Website'
+import WebsiteController from '../app/controllers/Website'
+import TripController from '../app/controllers/Trip'
 import { AppConfig } from './appconfig'
 import { UserCompanion } from '../app/models/User'
 
@@ -30,12 +31,14 @@ router.use((req, res, next) => {
 });
 
 //Website
-router.get(Router.index, Website.index)
-router.get(Router.authenticate, Website.authenticate)
-router.get(Router.profile, Website.profile)
-router.get(Router.tripview, Website.tripview)
-router.post(Router.travel, Website.tripinsert)
-router.get(Router.triplist, Website.getAllTrip)
+router.get(Router.index, WebsiteController.index)
+router.get(Router.authenticate, WebsiteController.authenticate)
+router.get(Router.profile, WebsiteController.profile)
+
+//Trips
+router.get(Router.tripview, TripController.tripview)
+router.post(Router.travel, TripController.tripinsert)
+router.get(Router.triplist, TripController.getAllTrip)
 
 // Security
 router.post(Router.signin, Authentication.signin)
