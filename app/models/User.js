@@ -17,8 +17,8 @@ export let User = class {
     validPassword (password) {
     return new Promise((resolve, reject) => {
       BCrypt.compare(password, this.password, function(err, res) {
-        if(err) reject(err.message)
-        resolve(res)
+        if(err) reject()
+        else resolve(res)
       })
     })
   }

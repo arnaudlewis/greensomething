@@ -15,6 +15,7 @@ router.use((req, res, next) => {
     const userWithExpiration = UserCompanion.decrypt(token)
     const expirationTime = new Date(userWithExpiration.expiredAt).getTime()
     if(expirationTime < new Date().getTime()) {
+      res.clearCookie('X-token')
       next()
     } else {
       const u = R.omit(['expiredAt'], userWithExpiration)
