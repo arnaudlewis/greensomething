@@ -1,5 +1,5 @@
 import { Global } from '../global'
-import Bcrypt from 'bcrypt'
+import * as BCrypt from 'bcrypt-nodejs'
 import JWT from 'jsonwebtoken'
 import R from 'ramda'
 import {CustomDate, DateTypes} from '../helpers'
@@ -14,7 +14,7 @@ export let User = class {
     this.lastname = lastname
   }
 
-  validPassword (password) {
+    validPassword (password) {
     return new Promise((resolve, reject) => {
       Bcrypt.compare(password, this.password, function(err, res) {
         if(err) reject(err.message)
@@ -47,10 +47,12 @@ export let UserCompanion = {
 
   hashPassword (password) {
     return new Promise((resolve, reject) => {
-      Bcrypt.hash(password, Global.BCryptSaltRounds, (err, hash) => {
-        if(err) reject()
-        resolve(hash)
-      });
+      BCrypt.genSalt(Global.BCryptSaltRounds, (err, salt) => {
+        BCrypt.hash(password, salt, null, (err, hash) => {
+          if(err) reject(err.message)
+          resolve(hash)
+        })
+      })
     })
   },
 

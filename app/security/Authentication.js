@@ -71,8 +71,8 @@ export default {
               res.redirect(errorUrl(errMessage))
             })
           })
-          .catch(() => {
-            res.redirect(errorUrl("Unable to create user"))
+          .catch((errMessage) => {
+            res.redirect(errorUrl(errMessage))
           })
       })
       .catch((errMessage) => {
