@@ -2,8 +2,7 @@ extends ./layout
 
 block body
 
-  h1 Profile
+  #profile
+    h1 !{ctx.firstname + ' ' + ctx.lastname + ' - ' + ctx.email}
 
-  p
-    !{ctx.firstname + ' ' + ctx.lastname}
-
+    img(class="profile-picture" src="/images/empty_profile.png")
