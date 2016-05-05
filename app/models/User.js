@@ -1,6 +1,9 @@
 'use strict';
 import { Global } from '../global'
 import Bcrypt from 'bcrypt'
+import JWT from 'jsonwebtoken'
+import R from 'ramda'
+import {CustomDate, DateTypes} from '../helpers'
 
 export let User = class {
 
@@ -10,10 +13,6 @@ export let User = class {
     this.password = password
     this.firstname = firstname
     this.lastname = lastname
-  }
-
-  fullname () {
-    return this.firstname + ' ' + this.lastname
   }
 
   validPassword (password) {
@@ -34,6 +33,14 @@ export let User = class {
       "lastname": this.lastname
     }
   }
+
+  asPublicCtx () {
+    return {
+      "email": this.email,
+      "firstname": this.firstname,
+      "lastname": this.lastname
+    }
+  }
 }
 
 export let UserCompanion = {
@@ -45,5 +52,15 @@ export let UserCompanion = {
         resolve(hash)
       });
     })
+  },
+
+  crypt(user) {
+    const expirationDate = CustomDate.increment(CustomDate.now(), Global.TokenExpiration, DateTypes.DAY)
+    const ctx = R.merge(user.asPublicCtx(), {expiredAt: expirationDate})
+    return JWT.sign(ctx, Global.JWTPassphrase)
+  },
+
+  decrypt(token) {
+    return JWT.verify(token, Global.JWTPassphrase);
   }
 }

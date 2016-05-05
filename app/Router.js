@@ -1,10 +1,16 @@
 import R from 'ramda'
 
 export let Router = {
+  //website
   index: '/',
   authenticate: '/authenticate',
+  profile: '/profile',
+
+  //security
   signin: '/signin',
   signup: '/signup',
+
+  //helpers
   withQueryString(route, params) {
     let queryString = '';
     if ( params ) {

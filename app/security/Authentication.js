@@ -24,8 +24,10 @@ export default {
       .then((user) => {
         user.validPassword(password)
           .then((isValid) => {
-            if(isValid) res.redirect(Router.index)
-            else res.redirect(errorUrl("Invalid password"))
+            if(isValid) {
+              res.cookie('X-token', UserCompanion.crypt(user), { maxAge: 900000, httpOnly: false});
+              res.redirect(Router.index)
+            } else res.redirect(errorUrl("Invalid password"))
           })
           .catch((errMessage) => {
             res.redirect(errorUrl(errMessage))

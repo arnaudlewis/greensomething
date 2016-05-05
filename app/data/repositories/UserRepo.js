@@ -5,7 +5,7 @@ const collection = getCollection('users')
 
 const buildUser = (mongoUser) => {
   return new User (
-    mongoUser._id,
+    mongoUser.id,
     mongoUser.email,
     mongoUser.password,
     mongoUser.firstname,

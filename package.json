@@ -21,6 +21,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "jade": "^1.11.0",
+    "jsonwebtoken": "^6.2.0",
     "method-override": "^2.3.5",
     "mongodb": "^2.1.18",
     "mongojs": "^2.4.0",
