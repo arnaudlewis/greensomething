@@ -91,7 +91,7 @@ hr.separator {
     height: 2rem; }
 
 .slider {
-  height: 50vh; }
+  height: calc(100vh - 5rem); }
   .slider.slider-dark * {
     color: #ffffff; }
   .slider.slider-dark .slide::before {
@@ -106,7 +106,7 @@ hr.separator {
     color: #ffffff; }
   .slider .slide {
     background-color: #6D7F9D;
-    height: 50vh; }
+    height: calc(100vh - 5rem); }
     .slider .slide .slide::before {
       background-color: #000000;
       opacity: 0.4; }

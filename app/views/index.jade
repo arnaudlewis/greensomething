@@ -1,3 +1,68 @@
 extends ./layout
 block body
-  h1  hello world
+  .slider.slider-dark
+    .slide(data-image='https://prismic-io.s3.amazonaws.com/blogtemplate/ff6d898c82d1cde79630bc480b0d58ba4fe4c031_home-header-small.png')
+      a.arrow-prev(href='#')
+        i.icon-arrow-prev
+      .slide-container
+        .title Green Something
+        p A whole new way to travel around the country
+      a.arrow-next(href='#')
+        i.icon-arrow-next
+
+  .centered-highlight
+      .underlay
+      .thumbnail(style='background-image: url(https://prismic-io.s3.amazonaws.com/alw12345/a5ed4c5cce756794de16a11cdc3fef01e0ecd4b4_artboard-18.png)')
+      .text-wrapper
+        h3 User-friendly visual editor for editing rich content
+        p
+          | The visual rich editor allows you to create and modify documents with various fragment types. Write rich texts, upload, resize and crop images, pin geo-location points and pick colors and dates.
+      img(src='https://prismic-io.s3.amazonaws.com/alw12345/medium_75364583-42a2-47f2-b0dd-16aa33e79365_new-york-city-times-square.jpg')
+
+
+  .featured-items
+    .item.col-8-sm-pt.col-6-sm-ls.col-4.centered
+      .thumbnail(style='background-image: url(https://prismic-io.s3.amazonaws.com/alw12345/a5ed4c5cce756794de16a11cdc3fef01e0ecd4b4_artboard-18.png)')
+      .text-wrapper
+        h3 User-friendly visual editor for editing rich content
+        p
+          | The visual rich editor allows you to create and modify documents with various fragment types. Write rich texts, upload, resize and crop images, pin geo-location points and pick colors and dates.
+        a.read-more-button(href='http://prismic.io')
+          | Explore
+    .item.col-8-sm-pt.col-6-sm-ls.col-4.centered
+      .thumbnail(style='background-image: url(https://prismic-io.s3.amazonaws.com/alw12345/a5ed4c5cce756794de16a11cdc3fef01e0ecd4b4_artboard-18.png)')
+      .text-wrapper
+        h3 User-friendly visual editor for editing rich content
+        p
+          | The visual rich editor allows you to create and modify documents with various fragment types. Write rich texts, upload, resize and crop images, pin geo-location points and pick colors and dates.
+        a.read-more-button(href='http://prismic.io')
+          | Explore
+    .item.col-8-sm-pt.col-6-sm-ls.col-4.centered
+      .thumbnail(style='background-image: url(https://prismic-io.s3.amazonaws.com/alw12345/a5ed4c5cce756794de16a11cdc3fef01e0ecd4b4_artboard-18.png)')
+      .text-wrapper
+        h3 User-friendly visual editor for editing rich content
+        p
+          | The visual rich editor allows you to create and modify documents with various fragment types. Write rich texts, upload, resize and crop images, pin geo-location points and pick colors and dates.
+        a.read-more-button(href='http://prismic.io')
+          | Explore
+
+  .alternated-highlights
+    .item.alternate
+      .text-wrapper
+        .head-text
+          .thumbnail(style='background-image: url(https://prismic-io.s3.amazonaws.com/alw12345/a5ed4c5cce756794de16a11cdc3fef01e0ecd4b4_artboard-18.png)')
+          h3 User-friendly visual editor for editing rich content
+        p
+          | The visual rich editor allows you to create and modify documents with various fragment types. Write rich texts, upload, resize and crop images, pin geo-location points and pick colors and dates.
+      .image-container.centered
+        img(src='https://prismic-io.s3.amazonaws.com/alw12345/medium_75364583-42a2-47f2-b0dd-16aa33e79365_new-york-city-times-square.jpg')
+    .item
+      .image-container.centered
+        img(src='https://prismic-io.s3.amazonaws.com/alw12345/medium_75364583-42a2-47f2-b0dd-16aa33e79365_new-york-city-times-square.jpg')
+      .text-wrapper
+        .head-text
+          .thumbnail(style='background-image: url(https://prismic-io.s3.amazonaws.com/alw12345/a5ed4c5cce756794de16a11cdc3fef01e0ecd4b4_artboard-18.png)')
+          h3 User-friendly visual editor for editing rich content
+        p
+          | The visual rich editor allows you to create and modify documents with various fragment types. Write rich texts, upload, resize and crop images, pin geo-location points and pick colors and dates.
+
