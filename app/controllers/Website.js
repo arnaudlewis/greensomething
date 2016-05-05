@@ -1,6 +1,8 @@
 import { Router } from '../Router'
 import UserRepo from '../data/repositories/UserRepo'
+import TripRepo from '../data/repositories/UserRepo'
 import { User } from '../models/User'
+import { Trip } from '../models/Trip'
 
 export default {
 
@@ -57,33 +59,19 @@ export default {
     let arrival = req.body.arrival
     let date = req.body.date
     let nPlace = req.body.nPlace
-    let driver = req.body.driver
     let price = req.body.price
 
-    const errorUrl = (message) => {
-      return Router.withQueryString(
-        Router.tripview,
-        {
-          trip_error: message,
-          "trip_departure": departure,
-          "trip_arrival": arrival,
-          "trip_date": date,
-          "trip_nPlace": nPlace,
-          "trip_driver": driver,
-          "trip_price": price
-        }
-      )
-    }
+    console.log(req.body)
 
-    if(!(departure && arrival && date && nPlace && driver && price)) res.redirect(errorUrl("You must provide all informations to add an travel"))
+    if(!(departure && arrival && date && nPlace && price)) res.status(400).send("You must complete the form")
 
-    const t = new Trip(null, departure, arrival, date, nPlace, driver, price)
+    const t = new Trip(null, departure, arrival, date, nPlace, req.ctx, price)
     TripRepo.insert(t)
       .then(() => {
-        res.redirect(Router.index)
+        res.sendStatus(200)
       })
       .catch((errMessage) => {
-        res.redirect(Router.withQueryString(errorUrl(errMessage)))
+        res.status(500).send(errMessage)
       })
     }
 }
