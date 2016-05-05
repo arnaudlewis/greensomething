@@ -2,41 +2,47 @@ extends ./layout
 block body
   h1 Travel
   div.content
-    form(action="#{Router.travel}", name='travelgreen', id='travelgreen', method='post')
-      fieldset
-        p
-          label(for='departure') Departure:
-          br
-          input(name='departure', type='text', value="#{trip_departure || ''}", id='departure')
-        p
-          label(for='arrival') Arrival:
-          br
-          input(name='arrival', type='text', value="#{trip_arrival || ''}", id='arrival')
-        p
-         label(for='date') Date:
-         br
-         input(name='date', type='text', value="#{trip_date || ''}", id='date')
-        p
-         label(for='car') Car:
-         br
-         input(name='car', type='text', value="#{trip_car || ''}", id='car')
-        p
-         label(for='nPlace') Place:
-         br
-         input(name='nPlace', type='text', value="#{trip_nPlace || ''}", id='nPlace')
-        p
-         label(for='driver') Driver:
-         br
-         input(name='driver', type='text', value="#{trip_driver || ''}", id='driver')
-        p
-         label(for='price') Price:
-         br
-         input(name='price', type='text', value="#{trip_price || ''}", id='price')
-         br
-        p
-          input(name='submit', type='submit', value='Send', id='submit')
+    #trip-form
+      script.
+        console.log(ReactDOM)
+        ReactDOM.render(
+          React.createElement(UI.TripForm), document.getElementById('trip-form')
+        )
+    //- form(action="#{Router.travel}", name='travelgreen', id='travelgreen', method='post')
+    //-   fieldset
+    //-     p
+    //-       label(for='departure') Departure:
+    //-       br
+    //-       input(name='departure', type='text', value="#{trip_departure || ''}", id='departure')
+    //-     p
+    //-       label(for='arrival') Arrival:
+    //-       br
+    //-       input(name='arrival', type='text', value="#{trip_arrival || ''}", id='arrival')
+    //-     p
+    //-      label(for='date') Date:
+    //-      br
+    //-      input(name='date', type='text', value="#{trip_date || ''}", id='date')
+    //-     p
+    //-      label(for='car') Car:
+    //-      br
+    //-      input(name='car', type='text', value="#{trip_car || ''}", id='car')
+    //-     p
+    //-      label(for='nPlace') Place:
+    //-      br
+    //-      input(name='nPlace', type='text', value="#{trip_nPlace || ''}", id='nPlace')
+    //-     p
+    //-      label(for='driver') Driver:
+    //-      br
+    //-      input(name='driver', type='text', value="#{trip_driver || ''}", id='driver')
+    //-     p
+    //-      label(for='price') Price:
+    //-      br
+    //-      input(name='price', type='text', value="#{trip_price || ''}", id='price')
+    //-      br
+    //-     p
+    //-       input(name='submit', type='submit', value='Send', id='submit')
 
-        p !{trip_error}
+    //-     p !{trip_error}
 
 
 

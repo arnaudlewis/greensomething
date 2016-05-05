@@ -29,8 +29,8 @@ export default {
               res.redirect(Router.index)
             } else res.redirect(errorUrl("Invalid password"))
           })
-          .catch((errMessage) => {
-            res.redirect(errorUrl(errMessage))
+          .catch(() => {
+            res.redirect(errorUrl("Cannot authenticate"))
           })
       })
     .catch((errMessage) => {
