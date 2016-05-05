@@ -7,9 +7,9 @@
   "scripts": {
     "start": "babel-watch app/app.js -w ./app/",
     "start-windows": "nodemon app/app.js -d app/ --exec babel-node",
-    "build-sass": "node-sass --include-path scss assets/stylesheets/main.sass public/stylesheets/greensomething.css",
+    "build-sass": "node-sass --include-path scss assets/stylesheets/main.sass public/stylesheets/compiled/greensomething.css",
     "watch-sass": "nodemon -e sass -x \"npm run build-sass\"",
-    "watch-js": "watchify assets/javascripts/main.js -t babelify -o public/javascripts/greensomething.js"
+    "watch-js": "watchify -t babelify assets/javascripts -o public/javascripts/compiled/greensomething.js"
   },
   "author": "arnaudlewis",
   "license": "ISC",
@@ -37,6 +37,7 @@
   "devDependencies": {
     "babel-cli": "^6.8.0",
     "babel-core": "^6.8.0",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-preset-es2016": "^6.0.11",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
