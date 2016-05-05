@@ -49,7 +49,7 @@ export let UserCompanion = {
     return new Promise((resolve, reject) => {
       BCrypt.genSalt(Global.BCryptSaltRounds, (err, salt) => {
         BCrypt.hash(password, salt, null, (err, hash) => {
-          if(err) reject(err.message)
+          if(err) reject()
           resolve(hash)
         })
       })
