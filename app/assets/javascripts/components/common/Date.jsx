@@ -21,7 +21,11 @@ export let Date = React.createClass({
     this.setState({date: this.props.defaultValue || Moment()})
   },
 
-  handleChange: function(date) {
+  componentDidMount() {
+    this.handleChange(this.state.date)
+  },
+
+  handleChange(date) {
     this.setState({date: date})
     this.props.onChange(date)
   },

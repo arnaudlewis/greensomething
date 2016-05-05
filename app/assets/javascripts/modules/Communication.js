@@ -2,6 +2,7 @@ import 'whatwg-fetch'
 import R from 'ramda'
 
 const Method = { GET: 'GET', POST: 'POST' }
+const ContentType = { JSON: 'application/json' }
 
 async function checkStatus(response) {
   console.log(response)
@@ -17,7 +18,15 @@ async function checkStatus(response) {
 }
 
 function parseJSON(response) {
-  return response.json()
+  return new Promise((resolve, reject) => {
+    response.json()
+      .then((res) => {
+        resolve(res)
+      })
+      .catch(() => {
+        resolve()
+      })
+  })
 }
 
 function buildQSUrl(url, params) {
@@ -30,11 +39,16 @@ function buildQSUrl(url, params) {
 }
 
 function asyncRequest(method, url, params, contentType) {
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", contentType);
+
   const absoluteUrl = url
   const options = {
     method: Method.GET,
-    credentials: 'include'
+    credentials: 'include',
+    headers: myHeaders
   }
+
   let p;
   switch (method) {
     case Method.GET :
@@ -51,6 +65,6 @@ function asyncRequest(method, url, params, contentType) {
 
 export let Communication = {
   createTrip(tripData) {
-    return asyncRequest(Method.POST, Router.travel, tripData)
+    return asyncRequest(Method.POST, Router.travel, tripData, ContentType.JSON)
   }
 }

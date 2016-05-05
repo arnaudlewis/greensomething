@@ -10,12 +10,15 @@ import { UserCompanion } from '../app/models/User'
 
 router.use((req, res, next) => {
   const token = req.cookies['X-token']
-  if(!token) next()
-  else {
+  if(!token) {
+    req.ctx = null
+    next()
+  } else {
     const userWithExpiration = UserCompanion.decrypt(token)
     const expirationTime = new Date(userWithExpiration.expiredAt).getTime()
     if(expirationTime < new Date().getTime()) {
       res.clearCookie('X-token')
+      req.ctx = null
       next()
     } else {
       const u = R.omit(['expiredAt'], userWithExpiration)
