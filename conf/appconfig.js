@@ -27,7 +27,7 @@ export let AppConfig = () => {
   app.use(methodOverride());
   app.use(cookieParser('1234'));
   app.use(session({secret: '1234', saveUninitialized: true, resave: true}));
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, '../public')));
   app.use(errorHandler());
 
   app.use('/', routes);

@@ -1,14 +1,24 @@
 doctype html(lang='en')
 
 head
-    title TODO
-    link(rel="stylesheet", href="/stylesheets/reset.css")
-    link(rel="stylesheet", href="/stylesheets/style.css")
+    title Green Something
+    link(rel="stylesheet", href="/vendors/virtuoso/virtuoso.min.css")
+    link(rel="stylesheet", href="/stylesheets/main.css")
     link(href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900", rel="stylesheet", type="text/css")
     meta(name="viewport", content="width=device-width, initial-scale=1")
 
-    script(src="//code.jquery.com/jquery-1.11.3.min.js")
+    script(src="/vendors/virtuoso/virtuoso.min.js")
 
 body
+
+  .fixed-menu
+    .fixed-menu-container
+      h1 Mon menu
+      nav
+        a(href="#{Router.profile}") Profile
+        a(href='#') Element 2
+        a(href='#') Element 3
+        a(href='#') Element 4
+
     block body
 
