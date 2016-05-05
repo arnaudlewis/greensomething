@@ -25,8 +25,9 @@ export default {
         user.validPassword(password)
           .then((isValid) => {
             if(isValid) {
+              const redirectURL = req.headers.referer
               res.cookie('X-token', UserCompanion.crypt(user), { maxAge: 900000, httpOnly: false});
-              res.redirect(Router.index)
+              res.redirect(redirectURL)
             } else res.redirect(errorUrl("Invalid password"))
           })
           .catch(() => {

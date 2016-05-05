@@ -39,6 +39,14 @@ export default {
     }
   },
 
+  bookTrip(req, res) {
+    if(!req.ctx) res.redirect(Router.authenticate)
+    else {
+      const tripId = req.query.tripId
+      UserRepo.bookTrip(req.ctx._id, tripId)
+    }
+  },
+
   tripview(req, res) {
     res.render(
       'tripview',

@@ -9,7 +9,8 @@ const buildUser = (mongoUser) => {
     mongoUser.email,
     mongoUser.password,
     mongoUser.firstname,
-    mongoUser.lastname
+    mongoUser.lastname,
+    mongoUser.booked
   )
 }
 
@@ -42,6 +43,17 @@ export default {
       collection.insert(user.toJson(), (err) => {
         if(err) reject(err.message)
         resolve()
+      })
+    })
+  },
+
+  bookTrip(userId, trip) {
+    return new promise((resolve, reject) => {
+      const selector = { "_id" : userId}
+      const modifier = { "booked" : { $push: trip}}
+      collection.updateOne(selector, modifier, (err, res) => {
+        if(err) reject(err.message)
+        else resolve()
       })
     })
   }
