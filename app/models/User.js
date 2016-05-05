@@ -6,12 +6,13 @@ import {CustomDate, DateTypes} from '../helpers'
 
 export let User = class {
 
-  constructor (id, email, password, firstname, lastname) {
+  constructor (id, email, password, firstname, lastname, booked) {
     this._id = id
     this.email = email
     this.password = password
     this.firstname = firstname
     this.lastname = lastname
+    this.booked = booked || []
   }
 
     validPassword (password) {
@@ -23,13 +24,18 @@ export let User = class {
     })
   }
 
+  bookTrip (trip) {
+    this.booked.push(trip)
+  }
+
   toJson () {
     return {
       "_id": this._id,
       "email": this.email,
       "password": this.password,
       "firstname": this.firstname,
-      "lastname": this.lastname
+      "lastname": this.lastname,
+      "booked": this.booked
     }
   }
 
