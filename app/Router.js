@@ -12,6 +12,11 @@ export let Router = {
   logout: '/logout',
 
   //helpers
+  'contact': '/contact',
+  'travel':'/travel',
+  'listTrip':'/trip',
+  'tripview':'/tripview',
+
   withQueryString(route, params) {
     let queryString = '';
     if ( params ) {

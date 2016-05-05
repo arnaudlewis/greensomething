@@ -29,6 +29,8 @@ router.use((req, res, next) => {
 router.get(Router.index, Website.index)
 router.get(Router.authenticate, Website.authenticate)
 router.get(Router.profile, Website.profile)
+router.get(Router.tripview, Website.tripview)
+router.post(Router.travel, Website.trip)
 
 // Security
 router.post(Router.signin, Authentication.signin)

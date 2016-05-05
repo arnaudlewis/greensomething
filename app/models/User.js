@@ -1,4 +1,3 @@
-'use strict';
 import { Global } from '../global'
 import Bcrypt from 'bcrypt'
 import JWT from 'jsonwebtoken'
