@@ -3,7 +3,8 @@
     h1
       a(href="#{Router.index}") Green Something
     nav
-      a(href="#{Router.tripview}") Trip
+      a(href="#{Router.listTrip}") Trips
+      a(href="#{Router.tripview}") Create trip
 
       if ctx
         a(href="#{Router.profile}") !{ctx.firstname + ' ' + ctx.lastname}
