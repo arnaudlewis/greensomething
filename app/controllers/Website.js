@@ -65,7 +65,6 @@ export default {
         let arrival = req.body.arrival
         let date = req.body.date
         let nPlace = req.body.nPlace
-        //let driver = req.ctx.firstname
         let price = req.body.price
 
         const errorUrl = (message) => {
@@ -82,15 +81,15 @@ export default {
           )
         }
 
-        if(!(departure && arrival && date && nPlace && price)) res.redirect(errorUrl("You must provide all informations to add an travel"))
+        if(!(departure && arrival && date && nPlace && price)) res.status(400).send("You must complete the form")
         const t = new Trip(null, departure, arrival, date, nPlace, req.ctx.firstname, price)
 
         TripRepo.insert(t)
           .then(() => {
-            res.redirect(Router.index)
+            res.sendStatus(200)
           })
           .catch((errMessage) => {
-            res.redirect(Router.withQueryString(errorUrl(errMessage)))
+            res.status(500).send(errMessage)
           })
     }
   },
