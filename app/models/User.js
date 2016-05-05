@@ -35,6 +35,7 @@ export let User = class {
 
   asPublicCtx () {
     return {
+      "_id": this._id,
       "email": this.email,
       "firstname": this.firstname,
       "lastname": this.lastname
