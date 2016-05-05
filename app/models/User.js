@@ -44,7 +44,6 @@ export let User = class {
 }
 
 export let UserCompanion = {
-
   hashPassword (password) {
     return new Promise((resolve, reject) => {
       BCrypt.genSalt(Global.BCryptSaltRounds, (err, salt) => {
