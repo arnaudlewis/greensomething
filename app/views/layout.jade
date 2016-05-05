@@ -11,12 +11,7 @@ head
     script(src="/vendors/virtuoso/dist/virtuoso.min.js")
 
 body
-  .fixed-menu
-    .fixed-menu-container
-      h1
-        a(href="#{Router.index}") Green Something
-      nav
-        a(href="#{Router.profile}") Profile
+  include ./menu
 
   .container
     block body

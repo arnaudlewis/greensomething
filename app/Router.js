@@ -9,6 +9,7 @@ export let Router = {
   //security
   signin: '/signin',
   signup: '/signup',
+  logout: '/logout',
 
   //helpers
   withQueryString(route, params) {

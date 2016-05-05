@@ -1,0 +1,10 @@
+.fixed-menu
+  .fixed-menu-container
+    h1
+      a(href="#{Router.index}") Green Something
+    nav
+      if ctx
+        a(href="#{Router.profile}") !{ctx.firstname + ' ' + ctx.lastname}
+        a(href="#{Router.logout}") Logout
+      else
+        a(href="#{Router.authenticate}") Authenticate

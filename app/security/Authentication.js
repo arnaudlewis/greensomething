@@ -78,5 +78,12 @@ export default {
       .catch((errMessage) => {
         res.redirect(errorUrl(errMessage))
       })
+  },
+
+  logout(req, res) {
+    const referer = req.headers.referer
+    req.app.locals.ctx = null
+    res.clearCookie('X-token')
+    res.redirect(referer)
   }
 }

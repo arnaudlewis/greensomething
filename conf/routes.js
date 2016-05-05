@@ -19,6 +19,7 @@ router.use((req, res, next) => {
     } else {
       const u = R.omit(['expiredAt'], userWithExpiration)
       req.ctx = u
+      req.app.locals.ctx = u
       next()
     }
   }
@@ -32,6 +33,6 @@ router.get(Router.profile, Website.profile)
 // Security
 router.post(Router.signin, Authentication.signin)
 router.post(Router.signup, Authentication.signup)
-
+router.get(Router.logout, Authentication.logout)
 
 export default router

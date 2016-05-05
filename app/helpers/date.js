@@ -1,3 +1,8 @@
+const SECOND = 1000
+const MINUTE = SECOND * 60
+const HOUR = MINUTE * 60
+const DAY = HOUR * 24
+
 export let CustomDate = {
 
   now () {
@@ -8,7 +13,19 @@ export let CustomDate = {
     let newDate = date
     switch(type) {
       case DateTypes.DAY:
-        newDate.setDate(date.getDate() + inc)
+        newDate.setDate(date.getDate() + inc * DAY)
+        return newDate
+
+      case DateTypes.HOUR:
+        newDate.setDate(date.getDate() + inc * HOUR)
+        return newDate
+
+      case DateTypes.MINUTE:
+        newDate.setDate(date.getDate() + inc * MINUTE)
+        return newDate
+
+      case DateTypes.SECOND:
+        newDate.setDate(date.getDate() + inc * SECOND)
         return newDate
 
       default:
@@ -18,5 +35,8 @@ export let CustomDate = {
 }
 
 export let DateTypes = {
-  DAY: 'day'
+  DAY: 'day',
+  HOUR: 'hour',
+  MINUTE: 'minute',
+  SECOND: 'second'
 }
