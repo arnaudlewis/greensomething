@@ -6,7 +6,7 @@ export let Text = React.createClass({
   propTypes: {
     maxLength: React.PropTypes.string,
     placeholder: React.PropTypes.string,
-    onChange: React.PropTypes.func,
+    onBlur: React.PropTypes.func,
     defaultValue: React.PropTypes.string,
     onKeyDown: React.PropTypes.func
   },
@@ -14,7 +14,7 @@ export let Text = React.createClass({
   onBlur(event) {
     let value = event.target.value
     let cleanedValue = value.trim().length > 0 ? value : null
-    this.props.onChange(cleanedValue)
+    this.props.onBlur(cleanedValue)
   },
 
   empty() {
