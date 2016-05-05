@@ -8,7 +8,6 @@ const buildUser = (mongoTrip) => {
     mongoTrip.departure,
     mongoTrip.arrival,
     mongoTrip.date,
-    mongoTrip.car,
     mongoTrip.nPlace,
     mongoTrip.driver,
     mongoTrip.price

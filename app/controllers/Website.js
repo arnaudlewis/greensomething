@@ -44,7 +44,6 @@ export default {
         trip_departure: req.query.trip_departure,
         trip_arrival: req.query.trip_arrival,
         trip_date: req.query.trip_date,
-        trip_car: req.query.trip_car,
         trip_nPlace: req.query.trip_nPlace,
         trip_driver: req.query.trip_driver,
         trip_price: req.query.trip_price,
@@ -57,7 +56,6 @@ export default {
     let departure = req.body.departure
     let arrival = req.body.arrival
     let date = req.body.date
-    let car = req.body.car
     let nPlace = req.body.nPlace
     let driver = req.body.driver
     let price = req.body.price
@@ -70,7 +68,6 @@ export default {
           "trip_departure": departure,
           "trip_arrival": arrival,
           "trip_date": date,
-          "trip_car": car,
           "trip_nPlace": nPlace,
           "trip_driver": driver,
           "trip_price": price
@@ -78,9 +75,9 @@ export default {
       )
     }
 
-    if(!(departure && arrival && date && car && nPlace && driver && price)) res.redirect(errorUrl("You must provide all informations to add an travel"))
+    if(!(departure && arrival && date && nPlace && driver && price)) res.redirect(errorUrl("You must provide all informations to add an travel"))
 
-    const t = new Trip(null, departure, arrival, date, car, nPlace, driver, price)
+    const t = new Trip(null, departure, arrival, date, nPlace, driver, price)
     TripRepo.insert(t)
       .then(() => {
         res.redirect(Router.index)
