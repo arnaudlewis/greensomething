@@ -31,6 +31,7 @@ export default {
   profile(req, res) {
     if(!req.ctx) res.redirect(Router.authenticate)
     else {
+      console.log(req.ctx)
       const futureProposed = TripRepo.getAllByUserId(req.ctx._id)
       const futureBooked = UserRepo.getBooked(req.ctx._id)
       Promise.all([futureProposed, futureBooked])

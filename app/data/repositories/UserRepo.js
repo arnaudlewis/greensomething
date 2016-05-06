@@ -23,7 +23,6 @@ export default {
       const query = { "email": email }
       collection.findOne(query, (err, user) => {
         if(err) reject("Unable to check email")
-
         if(user) reject("email already taken")
         else resolve()
       })
@@ -44,16 +43,18 @@ export default {
     return new Promise((resolve, reject) => {
       collection.insert(user.toJson(), (err, res) => {
         if(err) reject(err.message)
-        resolve(res.insertedId)
+        else {
+          resolve(res)
+        }
       })
     })
   },
 
   bookTrip(userId, trip) {
-    return new promise((resolve, reject) => {
-      const selector = { "_id" : userId}
-      const modifier = { "booked" : { $push: trip}}
-      collection.updateOne(selector, modifier, (err, res) => {
+    return new Promise((resolve, reject) => {
+      const selector = { _id : mongojs.ObjectId(userId)}
+      const modifier = { "$push" : { booked : trip}}
+      collection.update(selector, modifier, (err, res) => {
         if(err) reject(err.message)
         else resolve()
       })
@@ -61,21 +62,19 @@ export default {
   },
 
   getBooked(userId) {
+    console.log(userId)
     return new Promise((resolve, reject) => {
-      const query = { "_id": userId }
+      const query = { _id: mongojs.ObjectId(userId) }
       collection.findOne(query, (err, user) => {
         if(err) reject(err)
-        else {
-          const u = buildUser(user)
-          resolve(u ? u.booked : [])
-        }
+        else resolve(buildUser(user).booked)
       })
     })
   },
 
   getBookedTrip(userId, tripId) {
     return new Promise((resolve, reject) => {
-      const query = { "_id": mongojs.ObjectId(userId), "booked.$._id": mongojs.ObjectId(tripId)}
+      const query = { _id: mongojs.ObjectId(userId), "booked._id": mongojs.ObjectId(tripId)}
       collection.findOne(query, (err, user) => {
         if(err) reject(err)
         else resolve(buildUser(user))

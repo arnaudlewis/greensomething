@@ -7,7 +7,7 @@ export default {
   bookTrip(req, res) {
     if(!req.ctx) res.redirect(Router.authenticate)
     else {
-      const tripId = req.query.tripId
+      const tripId = req.params.tripId
       TripRepo.getOne(tripId)
         .then((trip) => {
           UserRepo.bookTrip(req.ctx._id, trip)
@@ -15,7 +15,8 @@ export default {
               res.sendStatus(200)
             })
             .catch((err) => {
-              res.status(500).send("Unable to book trip")
+              console.log(err)
+              res.status(500).send(err.message)
             })
         })
         .catch((err) => {
@@ -89,10 +90,18 @@ export default {
   },
 
   getOneTrip(req,res) {
-    const id = req.query.tripId
+    const id = req.params.tripId
     TripRepo.getOne(id)
       .then((trip) => {
-        res.render('tripdetails', {trip: trip})
+        UserRepo.getBookedTrip(req.ctx._id, id)
+          .then((booked) => {
+            const isBooked = booked === null ? false : true
+            res.render('tripdetails', {trip: trip, isBooked: isBooked})
+          })
+          .catch((err) => {
+            console.log(err.message)
+            res.status(500)
+          })
       })
       .catch((errMessage) => {
         res.status(500)

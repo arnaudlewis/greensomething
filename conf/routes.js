@@ -40,6 +40,7 @@ router.get(Router.tripview, TripController.tripview)
 router.post(Router.travel, TripController.tripinsert)
 router.get(Router.triplist, TripController.getAllTrip)
 router.get(Router.trip, TripController.getOneTrip)
+router.get(Router.bookTrip, TripController.bookTrip)
 
 
 // Security

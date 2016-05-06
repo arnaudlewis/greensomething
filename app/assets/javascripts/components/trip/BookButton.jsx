@@ -5,7 +5,8 @@ import { Communication } from '../../modules/Communication'
 
 function initialState() {
   return {
-    booked: false
+    booked: false,
+    error: ''
   }
 }
 
@@ -19,19 +20,24 @@ export let BookButton = React.createClass({
   getInitialState: initialState,
 
   componentWillMount() {
-    this.setState({booked: this.props.booked || false})
-  }
+    console.log(this.props.booked)
+    this.setState({booked: this.props.booked === 'true' ? true : false})
+  },
 
   onSubmit(e) {
     e.preventDefault()
+    if(this.state.booked) return
     Communication.bookTrip(this.props.tripId)
-      .then()
-    this.setState({booked: true})
+      .then(() => {
+        this.setState({booked: true, error: ''})
+      })
+      .catch((err) => {
+        this.setState({error: err.message})
+      })
   },
 
   render() {
-    const component = this.state.booked
-      ? <input class="disabled" readonly type="submit" onClick={this.onSubmit} value="Booked !" />
-      : <div><input type="submit" onClick={this.onSubmit} value="Book" /><span class="error">{this.state.error}</span></div>
+    if(this.state.booked) return (<div><input readOnly="true" className="disabled" type="submit" onClick={this.onSubmit} value="Booked !" /></div>)
+    else return (<div><input type="submit" onClick={this.onSubmit} value="Book" /><span className="error">{this.state.error}</span></div>)
   }
 })

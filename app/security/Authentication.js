@@ -65,11 +65,10 @@ export default {
           .then((hash) => {
             let u = new User(null, email, hash, firstname, lastname)
             UserRepo.insert(u)
-            .then((userId) => {
-              let insertedUser = u
-              u.setId(userId)
+            .then((inserted) => {
               const redirectURL = req.headers.referer
-              res.cookie('X-token', UserCompanion.crypt(insertedUser), { maxAge: UserCompanion.expirationTime(), httpOnly: false});
+              u.setId(inserted._id)
+              res.cookie('X-token', UserCompanion.crypt(u), { maxAge: UserCompanion.expirationTime(), httpOnly: false});
               res.redirect(redirectURL)
             })
             .catch((errMessage) => {

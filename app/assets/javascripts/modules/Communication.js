@@ -21,7 +21,8 @@ function parseJSON(response) {
   return new Promise((resolve, reject) => {
     response.json()
       .then((res) => {
-        resolve(res)
+        if(res) resolve(res)
+        else resolve()
       })
       .catch(() => {
         resolve()
@@ -40,7 +41,7 @@ function buildQSUrl(url, params) {
 
 function asyncRequest(method, url, params, contentType) {
   let myHeaders = new Headers();
-  myHeaders.append("Content-Type", contentType);
+  if(contentType) myHeaders.append("Content-Type", contentType);
 
   const absoluteUrl = url
   const options = {
@@ -70,6 +71,6 @@ export let Communication = {
 
   bookTrip(tripId) {
     let route = Router.bookTrip.replace(':tripId', tripId)
-    return asyncRequest(Method.GET, route, null, ContentType.JSON)
+    return asyncRequest(Method.GET, route, null)
   }
 }
