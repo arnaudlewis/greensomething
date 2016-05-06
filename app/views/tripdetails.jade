@@ -12,8 +12,9 @@ block body
         span= trip.date.substr(0, 10)
         span= trip.nPlace
 
-    div#book-button
-    script.
-        ReactDOM.render(
-          React.createElement(UI.BookButton, {tripId: "#{trip._id}", booked: "#{isBooked}"}), document.getElementById('book-button')
-        )
+    if ctx
+      div#book-button
+      script.
+          ReactDOM.render(
+            React.createElement(UI.BookButton, {tripId: "#{trip._id}", booked: "#{isBooked}"}), document.getElementById('book-button')
+          )

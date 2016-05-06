@@ -93,8 +93,10 @@ export default {
     const id = req.params.tripId
     TripRepo.getOne(id)
       .then((trip) => {
-        UserRepo.getBookedTrip(req.ctx._id, id)
+        if(req.ctx) {
+          UserRepo.getBookedTrip(req.ctx._id, id)
           .then((booked) => {
+            console.log(booked)
             const isBooked = booked === null ? false : true
             res.render('tripdetails', {trip: trip, isBooked: isBooked})
           })
@@ -102,6 +104,9 @@ export default {
             console.log(err.message)
             res.status(500)
           })
+        } else {
+          res.render('tripdetails', {trip: trip})
+        }
       })
       .catch((errMessage) => {
         res.status(500)

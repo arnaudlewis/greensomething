@@ -75,8 +75,12 @@ export default {
   getBookedTrip(userId, tripId) {
     return new Promise((resolve, reject) => {
       const query = { _id: mongojs.ObjectId(userId), "booked._id": mongojs.ObjectId(tripId)}
+      console.log(query)
       collection.findOne(query, (err, user) => {
-        if(err) reject(err)
+        if(err) {
+          console.log(err)
+          reject(err)
+        }
         else resolve(buildUser(user))
       })
     })
