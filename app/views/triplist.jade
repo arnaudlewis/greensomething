@@ -1,21 +1,16 @@
 extends ./layout
 block body
+  #triplist
     h1  Trip List
-      table
-        tr
-          th Departure
-          th Arrival
-          th Date
-          th Place
-          th Driver
-          th Price
-        each trip in results
-          tr
-            td= trip.departure
-            td= trip.arrival
-            td= trip.date
-            td= trip.nPlace
-            td= trip.driver
-            td= trip.price
+
+    each trip in results
+      div.directions
+        span= trip.departure + ' - ' + trip.arrival
+      div.driver
+        span= trip.driver + ' ' + trip.driver.lastname
+      div.infos
+        span= trip.date
+        span= trip.nPlace
+      div.price= trip.price
 
 

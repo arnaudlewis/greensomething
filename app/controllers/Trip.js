@@ -54,7 +54,7 @@ export default {
         }
 
         if(!(departure && arrival && date && nPlace && price)) res.status(400).send("You must complete the form")
-        const t = new Trip(null, departure, arrival, date, nPlace, req.ctx.firstname, price)
+        const t = new Trip(null, departure, arrival, date, nPlace, req.ctx, price)
 
         TripRepo.insert(t)
           .then(() => {

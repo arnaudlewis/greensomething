@@ -1,5 +1,6 @@
 import { Global } from '../global'
 import * as BCrypt from 'bcrypt-nodejs'
+import moment from 'moment'
 import JWT from 'jsonwebtoken'
 import R from 'ramda'
 import {CustomDate, DateTypes} from '../helpers'
@@ -62,9 +63,12 @@ export let UserCompanion = {
   },
 
   crypt(user) {
-    const expirationDate = CustomDate.increment(CustomDate.now(), Global.TokenExpiration, DateTypes.DAY)
-    const ctx = R.merge(user.asPublicCtx(), {expiredAt: expirationDate})
+    const ctx = R.merge(user.asPublicCtx(), {expiredAt: this.expirationTime()})
     return JWT.sign(ctx, Global.JWTPassphrase)
+  },
+
+  expirationTime() {
+    return moment.duration(Global.TokenExpiration, 'days');
   },
 
   decrypt(token) {

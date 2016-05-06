@@ -26,7 +26,7 @@ export default {
           .then((isValid) => {
             if(isValid) {
               const redirectURL = req.headers.referer
-              res.cookie('X-token', UserCompanion.crypt(user), { maxAge: 900000, httpOnly: false});
+              res.cookie('X-token', UserCompanion.crypt(user), { maxAge: UserCompanion.expirationTime(), httpOnly: false});
               res.redirect(redirectURL)
             } else res.redirect(errorUrl("Invalid password"))
           })
@@ -66,7 +66,9 @@ export default {
             const u = new User(null, email, hash, firstname, lastname)
             UserRepo.insert(u)
             .then(() => {
-              res.redirect(Router.index)
+              const redirectURL = req.headers.referer
+              res.cookie('X-token', UserCompanion.crypt(u), { maxAge: UserCompanion.expirationTime(), httpOnly: false});
+              res.redirect(redirectURL)
             })
             .catch((errMessage) => {
               res.redirect(errorUrl(errMessage))
