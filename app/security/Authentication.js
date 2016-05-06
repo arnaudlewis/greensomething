@@ -63,11 +63,13 @@ export default {
       .then(() => {
         UserCompanion.hashPassword(password)
           .then((hash) => {
-            const u = new User(null, email, hash, firstname, lastname)
+            let u = new User(null, email, hash, firstname, lastname)
             UserRepo.insert(u)
-            .then(() => {
+            .then((userId) => {
+              let insertedUser = u
+              u.setId(userId)
               const redirectURL = req.headers.referer
-              res.cookie('X-token', UserCompanion.crypt(u), { maxAge: UserCompanion.expirationTime(), httpOnly: false});
+              res.cookie('X-token', UserCompanion.crypt(insertedUser), { maxAge: UserCompanion.expirationTime(), httpOnly: false});
               res.redirect(redirectURL)
             })
             .catch((errMessage) => {

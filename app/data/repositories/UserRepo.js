@@ -1,11 +1,12 @@
 import { getCollection } from '../db'
+import mongojs from 'mongojs'
 import { User } from '../../models/User'
 
 const collection = getCollection('users')
 
 const buildUser = (mongoUser) => {
   return new User (
-    mongoUser.id,
+    mongoUser._id,
     mongoUser.email,
     mongoUser.password,
     mongoUser.firstname,
@@ -40,9 +41,9 @@ export default {
 
   insert(user) {
     return new Promise((resolve, reject) => {
-      collection.insert(user.toJson(), (err) => {
+      collection.insert(user.toJson(), (err, res) => {
         if(err) reject(err.message)
-        resolve()
+        resolve(res.insertedId)
       })
     })
   },
@@ -54,6 +55,16 @@ export default {
       collection.updateOne(selector, modifier, (err, res) => {
         if(err) reject(err.message)
         else resolve()
+      })
+    })
+  },
+
+  getBooked(userId) {
+    return new Promise((resolve, reject) => {
+      const query = { "_id": mongojs.ObjectId(userId) }
+      collection.findOne(query, (err, user) => {
+        if(err) reject(err)
+        else resolve(buildUser(user).booked)
       })
     })
   }

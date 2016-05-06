@@ -10,5 +10,9 @@ export let Locator = {
 
   authenticate () {
     transitionTo(Router.authenticate)
+  },
+
+  tripList () {
+    transitionTo(Router.triplist)
   }
 }

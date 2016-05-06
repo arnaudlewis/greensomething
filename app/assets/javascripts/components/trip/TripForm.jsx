@@ -41,7 +41,7 @@ export let TripForm = React.createClass({
     else {
       Communication.createTrip(_form)
         .then(() => {
-          Locator.index()
+          Locator.tripList()
         })
         .catch((error) => {
           this.setState({errors: [error.message]})

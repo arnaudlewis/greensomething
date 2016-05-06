@@ -16,7 +16,11 @@ export let User = class {
     this.booked = booked || []
   }
 
-    validPassword (password) {
+  setId(newId) {
+    this._id = newId
+  }
+
+  validPassword (password) {
     return new Promise((resolve, reject) => {
       BCrypt.compare(password, this.password, function(err, res) {
         if(err) reject()

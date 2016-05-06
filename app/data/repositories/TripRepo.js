@@ -36,6 +36,16 @@ export default {
     })
   },
 
+  getAllByUserId(userId) {
+    const query = { "driver._id" : userId}
+    return new Promise((resolve, reject) => {
+      collection.find(query).toArray((err, trips) => {
+        if(err) reject(err.message)
+        else resolve(trips.map(buildTrip))
+      })
+    })
+  },
+
   getOne(id){
     return new Promise((resolve, reject) => {
       const query = {"id": id}

@@ -31,12 +31,15 @@ export default {
   profile(req, res) {
     if(!req.ctx) res.redirect(Router.authenticate)
     else {
-      res.render(
-        'profile',
-        {
-          ctx: req.ctx
-        }
-      )
+      const futureProposed = TripRepo.getAllByUserId(req.ctx._id)
+      const futureBooked = UserRepo.getBooked(req.ctx._id)
+      Promise.all([futureProposed, futureBooked])
+        .then((resolved) => {
+          res.render('profile', {ctx: req.ctx, booked: resolved[1], proposed: resolved[0]})
+        })
+        .catch((errMessage) => {
+          res.status(500)
+        })
     }
   }
 }
