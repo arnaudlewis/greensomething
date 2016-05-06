@@ -51,7 +51,7 @@ export default {
 
   bookTrip(userId, trip) {
     return new promise((resolve, reject) => {
-      const selector = { "_id" : mongojs.objectId(userId)}
+      const selector = { "_id" : userId}
       const modifier = { "booked" : { $push: trip}}
       collection.updateOne(selector, modifier, (err, res) => {
         if(err) reject(err.message)
@@ -62,10 +62,13 @@ export default {
 
   getBooked(userId) {
     return new Promise((resolve, reject) => {
-      const query = { "_id": mongojs.ObjectId(userId) }
+      const query = { "_id": userId }
       collection.findOne(query, (err, user) => {
         if(err) reject(err)
-        else resolve(buildUser(user).booked)
+        else {
+          const u = buildUser(user)
+          resolve(u ? u.booked : [])
+        }
       })
     })
   },

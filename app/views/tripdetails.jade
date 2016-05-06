@@ -1,0 +1,13 @@
+extends ./layout
+block body
+
+  div.block-content
+    div.trip
+      div.directions
+        span= trip.departure + ' - ' + trip.arrival
+      div.driver
+        span= trip.driver.firstname + ' ' + trip.driver.lastname
+      div.price= trip.price
+      div.infos
+        span= trip.date.substr(0, 10)
+        span= trip.nPlace

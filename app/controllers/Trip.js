@@ -86,5 +86,16 @@ export default {
       .catch((errMessage) => {
         res.status(500)
       })
+  },
+
+  getOneTrip(req,res) {
+    const id = req.query.tripId
+    TripRepo.getOne(id)
+      .then((trip) => {
+        res.render('tripdetails', {trip: trip})
+      })
+      .catch((errMessage) => {
+        res.status(500)
+      })
   }
 }

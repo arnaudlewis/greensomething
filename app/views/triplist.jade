@@ -6,14 +6,15 @@ block body
 
     div.block-content
       each trip in results
-        div.trip
-          div.directions
-            span= trip.departure + ' - ' + trip.arrival
-          div.driver
-            span= trip.driver.firstname + ' ' + trip.driver.lastname
-          div.price= trip.price
-          div.infos
-            span= trip.date.substr(0, 10)
-            span= trip.nPlace
+        a(href="/trips/#{trip._id}")
+          div.trip
+            div.directions
+              span= trip.departure + ' - ' + trip.arrival
+            div.driver
+              span= trip.driver.firstname + ' ' + trip.driver.lastname
+            div.price= trip.price
+            div.infos
+              span= trip.date.substr(0, 10)
+              span= trip.nPlace
 
 
