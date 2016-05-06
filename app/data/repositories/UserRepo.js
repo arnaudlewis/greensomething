@@ -50,7 +50,7 @@ export default {
 
   bookTrip(userId, trip) {
     return new promise((resolve, reject) => {
-      const selector = { "_id" : userId}
+      const selector = { "_id" : mongojs.objectId(userId)}
       const modifier = { "booked" : { $push: trip}}
       collection.updateOne(selector, modifier, (err, res) => {
         if(err) reject(err.message)

@@ -8,7 +8,19 @@ export default {
     if(!req.ctx) res.redirect(Router.authenticate)
     else {
       const tripId = req.query.tripId
-      UserRepo.bookTrip(req.ctx._id, tripId)
+      TripRepo.getOne(tripId)
+        .then((trip) => {
+          UserRepo.bookTrip(req.ctx._id, trip)
+            .then(() => {
+              res.sendStatus(200)
+            })
+            .catch((err) => {
+              res.status(500).send("Unable to book trip")
+            })
+        })
+        .catch((err) => {
+          res.status(500).send(err.message)
+        })
     }
   },
 

@@ -66,5 +66,10 @@ function asyncRequest(method, url, params, contentType) {
 export let Communication = {
   createTrip(tripData) {
     return asyncRequest(Method.POST, Router.travel, tripData, ContentType.JSON)
+  },
+
+  bookTrip(tripId) {
+    let route = Router.bookTrip.replace(':tripId', tripId)
+    return asyncRequest(Method.GET, route, null, ContentType.JSON)
   }
 }
