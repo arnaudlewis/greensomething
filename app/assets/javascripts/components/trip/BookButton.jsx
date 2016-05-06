@@ -12,10 +12,15 @@ function initialState() {
 export let BookButton = React.createClass({
 
   props: {
-    tripId: React.PropTypes.string.isRequired
+    tripId: React.PropTypes.string.isRequired,
+    booked: React.PropTypes.bool
   },
 
   getInitialState: initialState,
+
+  componentWillMount() {
+    this.setState({booked: this.props.booked || false})
+  }
 
   onSubmit(e) {
     e.preventDefault()

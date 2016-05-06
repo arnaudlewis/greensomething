@@ -5,6 +5,7 @@ import { User } from '../../models/User'
 const collection = getCollection('users')
 
 const buildUser = (mongoUser) => {
+  if(!mongoUser) return null
   return new User (
     mongoUser._id,
     mongoUser.email,
@@ -65,6 +66,16 @@ export default {
       collection.findOne(query, (err, user) => {
         if(err) reject(err)
         else resolve(buildUser(user).booked)
+      })
+    })
+  },
+
+  getBookedTrip(userId, tripId) {
+    return new Promise((resolve, reject) => {
+      const query = { "_id": mongojs.ObjectId(userId), "booked.$._id": mongojs.ObjectId(tripId)}
+      collection.findOne(query, (err, user) => {
+        if(err) reject(err)
+        else resolve(buildUser(user))
       })
     })
   }

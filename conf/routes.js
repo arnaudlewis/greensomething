@@ -39,6 +39,8 @@ router.get(Router.profile, WebsiteController.profile)
 router.get(Router.tripview, TripController.tripview)
 router.post(Router.travel, TripController.tripinsert)
 router.get(Router.triplist, TripController.getAllTrip)
+router.get(Router.trip, TripController.getOneTrip)
+
 
 // Security
 router.post(Router.signin, Authentication.signin)

@@ -16,6 +16,7 @@ export let Router = {
   'travel':'/travel',
   'triplist':'/trips',
   'tripview':'/trip',
+  'trip': '/trips/:tripId',
   "bookTrip": '/user/book/trip/:tripId',
 
   withQueryString(route, params) {
